@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://hf7ddsten8pi"]
+
+[ext_resource type="PackedScene" uid="uid://1prjnjfcys4f" path="res://scenes/coin.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://imxxs6scpkgd" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bwi2r0dhygwfn" path="res://scenes/hud.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://nv2d5rd7f1md" path="res://scenes/invisible_floor.tscn" id="4_jyhfs"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_sugp2")
+
+[node name="CoinPosition" type="Marker2D" parent="."]
+position = Vector2(576, 500)
+
+[node name="Coin" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(576, 501)
+
+[node name="HUD" parent="." instance=ExtResource("2_0wfyh")]
+
+[node name="InvisibleFloor" parent="." instance=ExtResource("4_jyhfs")]
+position = Vector2(576, 527)
+
+[connection signal="body_entered" from="Coin" to="." method="_on_coin_land"]
+[connection signal="flip_coin" from="HUD" to="." method="flip_coin"]

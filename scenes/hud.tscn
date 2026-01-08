@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwi2r0dhygwfn"]
+
+[ext_resource type="Script" uid="uid://dda3nmwhndr54" path="res://scenes/hud.gd" id="1_ahhtf"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ahhtf")
+
+[node name="FlipButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.25
+offset_top = -84.0
+offset_right = 63.25
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Flip"
+
+[node name="StreakLabel" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "Streak: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="FlipButton" to="." method="_on_flip_button_pressed"]
