@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwi2r0dhygwfn"]
+[gd_scene load_steps=3 format=3 uid="uid://bwi2r0dhygwfn"]
 
 [ext_resource type="Script" uid="uid://dda3nmwhndr54" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="AudioStream" uid="uid://jk1tjd0s1bhe" path="res://assets/cash-register-kaching.mp3" id="2_oo0fn"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ahhtf")
@@ -28,4 +29,146 @@ text = "Streak: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CashLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_right = -189.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Cash: $"
+vertical_alignment = 1
+
+[node name="CashAmountLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -187.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="CoinValueUpgradeBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -250.0
+offset_bottom = -150.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="PerFlipLabel" type="Label" parent="CoinValueUpgradeBox"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 104.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 16
+text = "Cash per flip: $"
+
+[node name="PerFlipAmountLabel" type="Label" parent="CoinValueUpgradeBox"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 6.0
+offset_right = 227.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="UpgradeButton" type="Button" parent="CoinValueUpgradeBox"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 30.0
+offset_right = 187.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 16
+text = "Upgrade"
+
+[node name="UpgradeCostLabel" type="Label" parent="CoinValueUpgradeBox"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 62.0
+offset_right = 46.0
+offset_bottom = 85.0
+text = "Cost: $"
+
+[node name="UpgradeCostAmountLabel" type="Label" parent="CoinValueUpgradeBox"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 62.0
+offset_right = 227.0
+offset_bottom = 85.0
+text = "0"
+
+[node name="CoinChanceUpgradeBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -140.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="PerFlipLabel" type="Label" parent="CoinChanceUpgradeBox"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 104.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 16
+text = "Chance of heads:"
+
+[node name="PerFlipChanceLabel" type="Label" parent="CoinChanceUpgradeBox"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 6.0
+offset_right = 227.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 16
+text = "30%"
+
+[node name="UpgradeButton" type="Button" parent="CoinChanceUpgradeBox"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 30.0
+offset_right = 187.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 16
+text = "Upgrade"
+
+[node name="UpgradeCostLabel" type="Label" parent="CoinChanceUpgradeBox"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 62.0
+offset_right = 46.0
+offset_bottom = 85.0
+text = "Cost: $"
+
+[node name="UpgradeCostAmountLabel" type="Label" parent="CoinChanceUpgradeBox"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 62.0
+offset_right = 227.0
+offset_bottom = 85.0
+text = "0"
+
+[node name="UpgradeButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_oo0fn")
+
 [connection signal="pressed" from="FlipButton" to="." method="_on_flip_button_pressed"]
+[connection signal="pressed" from="CoinValueUpgradeBox/UpgradeButton" to="." method="_on_coin_value_upgrade_button_pressed"]
+[connection signal="pressed" from="CoinChanceUpgradeBox/UpgradeButton" to="." method="_on_coin_chance_upgrade_button_pressed"]

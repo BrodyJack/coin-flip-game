@@ -20,4 +20,6 @@ position = Vector2(576, 501)
 position = Vector2(576, 527)
 
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_land"]
+[connection signal="coin_chance_upgrade" from="HUD" to="." method="_on_hud_coin_chance_upgrade"]
+[connection signal="coin_value_upgrade" from="HUD" to="." method="_on_hud_coin_value_upgrade"]
 [connection signal="flip_coin" from="HUD" to="." method="flip_coin"]
