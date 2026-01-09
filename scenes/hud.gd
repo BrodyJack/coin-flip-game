@@ -3,6 +3,8 @@ extends CanvasLayer
 signal flip_coin
 signal coin_value_upgrade
 signal coin_chance_upgrade
+signal coin_auto_flip_upgrade
+signal auto_flip_status
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("spacebar_flip"):
@@ -33,6 +35,22 @@ func update_coin_chance_upgrade_cost(upgrade_cost) -> void:
 func set_coin_chance_upgrade_button_enabled(should_enable) -> void:
 	$CoinChanceUpgradeBox/UpgradeButton.disabled = not should_enable
 	
+func update_coin_auto_flip_purchased(purchased_status) -> void:
+	$CoinAutoFlipUpgradeBox/PurchasedStatusLabel.text = "Yes" if purchased_status else "No"
+	
+func update_coin_auto_flip_upgrade_cost(upgrade_cost, no_cost) -> void:
+	if no_cost:
+		$CoinAutoFlipUpgradeBox/UpgradeCostLabel.text = ""
+		$CoinAutoFlipUpgradeBox/UpgradeCostAmountLabel.text = ""
+	else:
+		$CoinAutoFlipUpgradeBox/UpgradeCostAmountLabel.text = str(upgrade_cost)
+	
+func set_coin_auto_flip_upgrade_button_enabled(should_enable) -> void:
+	$CoinAutoFlipUpgradeBox/UpgradeButton.disabled = not should_enable
+	
+func set_auto_flipper_checkbox_visible(is_visible) -> void:
+	$AutoFlipEnabler.disabled = not is_visible
+	
 func play_upgrade_sound() -> void:
 	$UpgradeButtonSound.play()
 
@@ -46,3 +64,12 @@ func _on_coin_value_upgrade_button_pressed() -> void:
 
 func _on_coin_chance_upgrade_button_pressed() -> void:
 	coin_chance_upgrade.emit()
+
+
+func _on_auto_flip_upgrade_button_pressed() -> void:
+	coin_auto_flip_upgrade.emit()
+
+
+func _on_auto_flip_enabler_toggled(toggled_on: bool) -> void:
+	auto_flip_status.emit(toggled_on)
+	

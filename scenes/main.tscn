@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://hf7ddsten8pi"]
+[gd_scene load_steps=6 format=3 uid="uid://hf7ddsten8pi"]
 
 [ext_resource type="PackedScene" uid="uid://1prjnjfcys4f" path="res://scenes/coin.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://imxxs6scpkgd" path="res://scenes/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bwi2r0dhygwfn" path="res://scenes/hud.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://nv2d5rd7f1md" path="res://scenes/invisible_floor.tscn" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://g0y4s15wa1e7" path="res://assets/percussivegroove_reverb_010126.wav" id="5_tbgi4"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_sugp2")
@@ -19,7 +20,17 @@ position = Vector2(576, 501)
 [node name="InvisibleFloor" parent="." instance=ExtResource("4_jyhfs")]
 position = Vector2(576, 527)
 
+[node name="MainMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tbgi4")
+
+[node name="AutoFlipTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_land"]
+[connection signal="auto_flip_status" from="HUD" to="." method="_on_hud_auto_flip_status"]
+[connection signal="coin_auto_flip_upgrade" from="HUD" to="." method="_on_hud_coin_auto_flip_upgrade"]
 [connection signal="coin_chance_upgrade" from="HUD" to="." method="_on_hud_coin_chance_upgrade"]
 [connection signal="coin_value_upgrade" from="HUD" to="." method="_on_hud_coin_value_upgrade"]
 [connection signal="flip_coin" from="HUD" to="." method="flip_coin"]
+[connection signal="finished" from="MainMusic" to="." method="_on_main_music_finished"]
+[connection signal="timeout" from="AutoFlipTimer" to="." method="_on_auto_flip_timer_timeout"]

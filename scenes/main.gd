@@ -6,6 +6,9 @@ extends Node
 ## **Currently unused as we are instead simulating with physics**
 @export var flip_time = 2.0
 
+## Controls how hard the coin flips up - suggest adjusting gravity accordingly
+@export var flip_impulse = -750
+
 ## Chance for the coin to land on heads, 0 for tails, 1 for heads
 @export var heads_chance = .3
 
@@ -19,7 +22,8 @@ var is_coin_flipping = false
 var is_heads = false
 
 var streak = 0
-var total_cash = 0.0
+
+@export var total_cash = 0.0
 
 @export var coin_chance_upgrade_costs = [25, 50, 100, 200, 500]
 @export var coin_chance_upgrade_values = [.35, .40, .45, .50, .55]
@@ -29,9 +33,14 @@ var coin_chance_upgrade_index = 0
 @export var coin_value_upgrade_values = [2, 3, 4, 5, 10]
 var coin_value_upgrade_index = 0
 
+@export var auto_flipper_purchased = false
+@export var auto_flipper_enabled = false
+@export var auto_flipper_upgrade_cost = 100
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_hud()
+	$MainMusic.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -44,8 +53,9 @@ func flip_coin() -> void:
 		
 	is_coin_flipping = true
 	is_heads = randi_range(0, 99) <= (heads_chance * 100)
+	print("chance: " + str(heads_chance), ", value: " + str(coin_value), ", result: " + str(is_heads))
 	
-	$Coin.apply_central_impulse(Vector2(0, -750))
+	$Coin.apply_central_impulse(Vector2(0, flip_impulse))
 	$Coin/FlipSound.play()
 	$Coin/AnimatedSprite2D.play()
 
@@ -67,7 +77,6 @@ func _on_coin_land(_body: Node) -> void:
 		streak = 0
 		
 	update_hud()
-	print("heads!" if is_heads else "tails")
 	is_coin_flipping = false
 	
 
@@ -84,6 +93,12 @@ func update_hud() -> void:
 	
 	should_enable = total_cash >= coin_chance_upgrade_costs[coin_chance_upgrade_index]
 	$HUD.set_coin_chance_upgrade_button_enabled(should_enable)
+	
+	$HUD.update_coin_auto_flip_purchased(auto_flipper_purchased)
+	$HUD.update_coin_auto_flip_upgrade_cost(auto_flipper_upgrade_cost, auto_flipper_purchased)
+	should_enable = total_cash >= auto_flipper_upgrade_cost
+	$HUD.set_coin_auto_flip_upgrade_button_enabled(should_enable && not auto_flipper_purchased)
+	$HUD.set_auto_flipper_checkbox_visible(auto_flipper_purchased)
 
 func _on_hud_coin_value_upgrade() -> void:
 	var current_upgrade_cost = coin_value_upgrade_costs[coin_value_upgrade_index]
@@ -113,3 +128,36 @@ func _on_hud_coin_chance_upgrade() -> void:
 	coin_chance_upgrade_index += 1
 	
 	update_hud()
+
+
+func _on_main_music_finished() -> void:
+	$MainMusic.play()
+
+
+func _on_hud_coin_auto_flip_upgrade() -> void:
+	if total_cash < auto_flipper_upgrade_cost:
+		return
+		
+	$HUD.play_upgrade_sound()
+	
+	total_cash -= auto_flipper_upgrade_cost
+	auto_flipper_purchased = true
+	
+	update_hud()
+
+
+func _on_hud_auto_flip_status(toggled_on: bool) -> void:
+	auto_flipper_enabled = toggled_on
+	
+	if auto_flipper_enabled:
+		flip_coin()
+		$AutoFlipTimer.start()
+	else:
+		$AutoFlipTimer.stop()
+	
+	
+
+
+func _on_auto_flip_timer_timeout() -> void:
+	if auto_flipper_enabled:
+		flip_coin()
