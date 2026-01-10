@@ -41,11 +41,14 @@ var coin_value_upgrade_index = 0
 @export var bonus_coin_cash_value = 10
 var active_bonus_coin: RigidBody2D = null
 
+@export var volume = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_hud()
 	$BonusCoinSpawnTimer.start()
 	$MainMusic.play()
+	$PauseMenu.set_volume(volume)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -157,8 +160,13 @@ func _on_hud_auto_flip_status(toggled_on: bool) -> void:
 	if auto_flipper_enabled:
 		flip_coin()
 		$AutoFlipTimer.start()
+		$HUD/AutoFlipProgressBar.max_value = $AutoFlipTimer.wait_time
+		$HUD/AutoFlipProgressBar/ProgressBarTimer.wait_time = $AutoFlipTimer.wait_time
+		$HUD/AutoFlipProgressBar/ProgressBarTimer.start()
 	else:
 		$AutoFlipTimer.stop()
+		$HUD/AutoFlipProgressBar/ProgressBarTimer.stop()
+		$HUD/AutoFlipProgressBar.value = 0.01
 	
 	
 
@@ -175,7 +183,11 @@ func _on_bonus_coin_spawn_timer_timeout() -> void:
 	spawn_loc.progress_ratio = randf()
 	
 	bonus_coin.position = spawn_loc.position
-	bonus_coin.gravity_scale = randf()
+	bonus_coin.gravity_scale = randf_range(0.5, 1.5)
+	# Make it a little easier to click if moving quickly
+	if bonus_coin.gravity_scale > 1.0:
+		bonus_coin.get_node("CollisionShape2D").scale *= 1.5
+		
 	bonus_coin.set_is_bonus_coin(true)
 	var anim = bonus_coin.get_node("AnimatedSprite2D")
 	anim.speed_scale = 0.5
@@ -189,9 +201,13 @@ func _on_bonus_coin_spawn_timer_timeout() -> void:
 
 
 func _on_coin_bonus_coin_clicked() -> void:
+	# Prevent duplicate clicks
+	if active_bonus_coin.freeze == true:
+		return
+		
+	active_bonus_coin.freeze = true
 	print("click_bonus_coin_signal_received")
 	total_cash += bonus_coin_cash_value
-	active_bonus_coin.freeze = true
 	active_bonus_coin.get_node("HeadsSound").finished.connect(_free_up_bonus_coin)
 	active_bonus_coin.get_node("HeadsSound").play()
 	update_hud()
@@ -199,3 +215,16 @@ func _on_coin_bonus_coin_clicked() -> void:
 func _free_up_bonus_coin() -> void:
 	active_bonus_coin.queue_free()
 	active_bonus_coin = null
+
+
+func _on_hud_pause_game() -> void:
+	$PauseMenu._on_pause_button_pressed()
+	$HUD.hide()
+
+
+func _on_pause_menu_unpause_game() -> void:
+	$HUD.show()
+
+
+func _on_pause_menu_volume_change(value: float) -> void:
+	$MainMusic.volume_linear = value / 100.0

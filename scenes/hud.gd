@@ -5,10 +5,14 @@ signal coin_value_upgrade
 signal coin_chance_upgrade
 signal coin_auto_flip_upgrade
 signal auto_flip_status
+signal pause_game
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("spacebar_flip"):
 		flip_coin.emit()
+	
+	if not $AutoFlipProgressBar/ProgressBarTimer.is_stopped():
+		$AutoFlipProgressBar.value = $AutoFlipProgressBar/ProgressBarTimer.wait_time - $AutoFlipProgressBar/ProgressBarTimer.time_left
 		
 func update_streak(streak) -> void:
 	$StreakLabel.text = "Streak: " + str(streak)
@@ -54,6 +58,7 @@ func set_auto_flipper_checkbox_visible(is_visible) -> void:
 func play_upgrade_sound() -> void:
 	$UpgradeButtonSound.play()
 
+
 func _on_flip_button_pressed() -> void:
 	flip_coin.emit()
 
@@ -73,3 +78,6 @@ func _on_auto_flip_upgrade_button_pressed() -> void:
 func _on_auto_flip_enabler_toggled(toggled_on: bool) -> void:
 	auto_flip_status.emit(toggled_on)
 	
+
+func _on_pause_button_pressed() -> void:
+	pause_game.emit()

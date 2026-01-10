@@ -244,8 +244,25 @@ grow_vertical = 0
 focus_mode = 0
 text = "Auto Flip"
 
+[node name="AutoFlipProgressBar" type="ProgressBar" parent="."]
+offset_left = 656.0
+offset_top = 607.0
+offset_right = 736.0
+offset_bottom = 617.0
+show_percentage = false
+
+[node name="ProgressBarTimer" type="Timer" parent="AutoFlipProgressBar"]
+
+[node name="PauseButton" type="Button" parent="."]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 50.0
+text = "Pause"
+
 [connection signal="pressed" from="FlipButton" to="." method="_on_flip_button_pressed"]
 [connection signal="pressed" from="CoinValueUpgradeBox/UpgradeButton" to="." method="_on_coin_value_upgrade_button_pressed"]
 [connection signal="pressed" from="CoinChanceUpgradeBox/UpgradeButton" to="." method="_on_coin_chance_upgrade_button_pressed"]
 [connection signal="pressed" from="CoinAutoFlipUpgradeBox/UpgradeButton" to="." method="_on_auto_flip_upgrade_button_pressed"]
 [connection signal="toggled" from="AutoFlipEnabler" to="." method="_on_auto_flip_enabler_toggled"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
