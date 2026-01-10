@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwi2r0dhygwfn"]
+[gd_scene load_steps=4 format=3 uid="uid://bwi2r0dhygwfn"]
 
 [ext_resource type="Script" uid="uid://dda3nmwhndr54" path="res://scenes/hud.gd" id="1_ahhtf"]
 [ext_resource type="AudioStream" uid="uid://jk1tjd0s1bhe" path="res://assets/cash-register-kaching.mp3" id="2_oo0fn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(3.080368e-06, 0.72198725, 0.29356414, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ahhtf")
@@ -249,6 +261,8 @@ offset_left = 656.0
 offset_top = 607.0
 offset_right = 736.0
 offset_bottom = 617.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_oo0fn")
+value = 30.0
 show_percentage = false
 
 [node name="ProgressBarTimer" type="Timer" parent="AutoFlipProgressBar"]
