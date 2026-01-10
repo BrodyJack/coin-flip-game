@@ -37,9 +37,14 @@ var coin_value_upgrade_index = 0
 @export var auto_flipper_enabled = false
 @export var auto_flipper_upgrade_cost = 100
 
+@export var bonus_coin_spawn_scene: PackedScene
+@export var bonus_coin_cash_value = 10
+var active_bonus_coin: RigidBody2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_hud()
+	$BonusCoinSpawnTimer.start()
 	$MainMusic.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -161,3 +166,36 @@ func _on_hud_auto_flip_status(toggled_on: bool) -> void:
 func _on_auto_flip_timer_timeout() -> void:
 	if auto_flipper_enabled:
 		flip_coin()
+
+
+func _on_bonus_coin_spawn_timer_timeout() -> void:
+	var bonus_coin = bonus_coin_spawn_scene.instantiate()
+	
+	var spawn_loc = $BonusCoinSpawner/CoinSpawnLocation
+	spawn_loc.progress_ratio = randf()
+	
+	bonus_coin.position = spawn_loc.position
+	bonus_coin.gravity_scale = randf()
+	bonus_coin.set_is_bonus_coin(true)
+	var anim = bonus_coin.get_node("AnimatedSprite2D")
+	anim.speed_scale = 0.5
+	anim.play()
+	
+	bonus_coin.bonus_coin_clicked.connect(_on_coin_bonus_coin_clicked)
+	
+	add_child(bonus_coin)
+	active_bonus_coin = bonus_coin
+	
+
+
+func _on_coin_bonus_coin_clicked() -> void:
+	print("click_bonus_coin_signal_received")
+	total_cash += bonus_coin_cash_value
+	active_bonus_coin.freeze = true
+	active_bonus_coin.get_node("HeadsSound").finished.connect(_free_up_bonus_coin)
+	active_bonus_coin.get_node("HeadsSound").play()
+	update_hud()
+	
+func _free_up_bonus_coin() -> void:
+	active_bonus_coin.queue_free()
+	active_bonus_coin = null
