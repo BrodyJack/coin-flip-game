@@ -33,6 +33,7 @@ offset_right = 63.25
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Flip"
 

@@ -49,6 +49,8 @@ func _ready() -> void:
 	$BonusCoinSpawnTimer.start()
 	$MainMusic.play()
 	$PauseMenu.set_volume(volume)
+	$HUD/AutoFlipProgressBar.value = 0
+	$DancingDude/AnimatedSprite2D.play("dance")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

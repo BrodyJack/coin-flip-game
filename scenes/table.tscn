@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsyw4t6dcy7ih"]
+
+[ext_resource type="Texture2D" uid="uid://c3x1ki0mlb17a" path="res://assets/HouseInteriorPack_Table.png" id="1_jd0nb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5i0k"]
+size = Vector2(24, 4)
+
+[node name="Table" type="StaticBody2D"]
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_jd0nb")
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5i0k")

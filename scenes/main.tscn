@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://hf7ddsten8pi"]
+[gd_scene load_steps=10 format=3 uid="uid://hf7ddsten8pi"]
 
 [ext_resource type="PackedScene" uid="uid://1prjnjfcys4f" path="res://scenes/coin.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://imxxs6scpkgd" path="res://scenes/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bwi2r0dhygwfn" path="res://scenes/hud.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://nv2d5rd7f1md" path="res://scenes/invisible_floor.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dsyw4t6dcy7ih" path="res://scenes/table.tscn" id="3_tefeu"]
+[ext_resource type="PackedScene" uid="uid://e5qtca5dxvn2" path="res://scenes/background_tilemap.tscn" id="3_tipki"]
 [ext_resource type="AudioStream" uid="uid://g0y4s15wa1e7" path="res://assets/percussivegroove_reverb_010126.wav" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://qggtxmj7vmeo" path="res://scenes/pause_menu.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://b0vv6bxtcdjd8" path="res://scenes/dancing_dude.tscn" id="7_o6xl0"]
 
 [sub_resource type="Curve2D" id="Curve2D_tbgi4"]
 _data = {
@@ -18,16 +20,19 @@ script = ExtResource("1_sugp2")
 auto_flipper_purchased = true
 bonus_coin_spawn_scene = ExtResource("1_o5qli")
 
+[node name="BackgroundTilemap" parent="." instance=ExtResource("3_tipki")]
+
+[node name="Table" parent="." instance=ExtResource("3_tefeu")]
+position = Vector2(576, 464.00003)
+scale = Vector2(6, 6)
+
 [node name="CoinPosition" type="Marker2D" parent="."]
-position = Vector2(576, 500)
+position = Vector2(576, 424)
 
 [node name="Coin" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(576, 501)
+position = Vector2(576, 432)
 
 [node name="HUD" parent="." instance=ExtResource("2_0wfyh")]
-
-[node name="InvisibleFloor" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(576, 527)
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -47,6 +52,10 @@ wait_time = 5.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_tefeu")]
 visible = false
+
+[node name="DancingDude" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(1104, 584)
+scale = Vector2(2, 2)
 
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_land"]
 [connection signal="bonus_coin_clicked" from="Coin" to="." method="_on_coin_bonus_coin_clicked"]
