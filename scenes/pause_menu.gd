@@ -15,7 +15,7 @@ func _on_pause_button_pressed() -> void:
 	show()
 
 
-func _on_close_pause_button_pressed() -> void:
+func _on_resume_button_pressed() -> void:
 	hide()
 	get_tree().paused = false
 	unpause_game.emit()
@@ -23,3 +23,10 @@ func _on_close_pause_button_pressed() -> void:
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	volume_change.emit(value)
+
+
+func _on_title_button_pressed() -> void:
+	print("Returning to title")
+	hide()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
