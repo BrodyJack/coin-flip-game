@@ -1,0 +1,36 @@
+[gd_resource type="AnimatedTexture" load_steps=11 format=3 uid="uid://dbbay86ye6jj1"]
+
+[ext_resource type="Texture2D" uid="uid://dy6gqfwgqylen" path="res://assets/rainbow_coin/rainbow_coin_animated1.png" id="1_ikpvw"]
+[ext_resource type="Texture2D" uid="uid://cyclygvvf6y8" path="res://assets/rainbow_coin/rainbow_coin_animated2.png" id="2_miyhj"]
+[ext_resource type="Texture2D" uid="uid://ol2ika1uioxo" path="res://assets/rainbow_coin/rainbow_coin_animated3.png" id="3_fd7tv"]
+[ext_resource type="Texture2D" uid="uid://dh0kag1nnawc6" path="res://assets/rainbow_coin/rainbow_coin_animated4.png" id="4_i8p8v"]
+[ext_resource type="Texture2D" uid="uid://dj8lkc0sl4tor" path="res://assets/rainbow_coin/rainbow_coin_animated5.png" id="5_dds5i"]
+[ext_resource type="Texture2D" uid="uid://6v7wjjfsjv0s" path="res://assets/rainbow_coin/rainbow_coin_animated6.png" id="6_na5v1"]
+[ext_resource type="Texture2D" uid="uid://bjmo2b46e550p" path="res://assets/rainbow_coin/rainbow_coin_animated7.png" id="7_6tuwo"]
+[ext_resource type="Texture2D" uid="uid://4l3qooust4b0" path="res://assets/rainbow_coin/rainbow_coin_animated8.png" id="8_h1qvv"]
+[ext_resource type="Texture2D" uid="uid://dlt2evfh3uxwx" path="res://assets/rainbow_coin/rainbow_coin_animated9.png" id="9_4taq2"]
+[ext_resource type="Texture2D" uid="uid://wuojkhs7yw2g" path="res://assets/rainbow_coin/rainbow_coin_animated10.png" id="10_3tjah"]
+
+[resource]
+frames = 10
+speed_scale = 0.8
+frame_0/texture = ExtResource("1_ikpvw")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_miyhj")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_fd7tv")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_i8p8v")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_dds5i")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("6_na5v1")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("7_6tuwo")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("8_h1qvv")
+frame_7/duration = 0.1
+frame_8/texture = ExtResource("9_4taq2")
+frame_8/duration = 0.1
+frame_9/texture = ExtResource("10_3tjah")
+frame_9/duration = 0.1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq76f8cubonqv"]
+
+[ext_resource type="Script" uid="uid://dt0o3ggxr05r2" path="res://scenes/carousel_container.gd" id="1_k4f7s"]
+
+[node name="CarouselContainer" type="Node2D"]
+script = ExtResource("1_k4f7s")

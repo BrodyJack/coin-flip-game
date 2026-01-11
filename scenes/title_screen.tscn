@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8hhnqxx8toa2"]
+[gd_scene load_steps=9 format=3 uid="uid://b8hhnqxx8toa2"]
 
 [ext_resource type="Script" uid="uid://dpkv7vo7577ln" path="res://scenes/title_screen.gd" id="1_sa3yf"]
 [ext_resource type="PackedScene" uid="uid://1prjnjfcys4f" path="res://scenes/coin.tscn" id="2_s4lrb"]
+[ext_resource type="Script" uid="uid://dt0o3ggxr05r2" path="res://scenes/carousel_container.gd" id="3_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://dta6outmehrlh" path="res://textures/gold_coin_animated_texture.tres" id="4_cs5ya"]
+[ext_resource type="Texture2D" uid="uid://bvg3x756lvos0" path="res://textures/silver_coin_animated_texture.tres" id="5_mykxm"]
+[ext_resource type="Texture2D" uid="uid://bg0n7xfhm5q27" path="res://textures/copper_coin_animated_texture.tres" id="6_tklts"]
+[ext_resource type="Texture2D" uid="uid://me5h4a41msm4" path="res://textures/blood_coin_animated_texture.tres" id="7_u26n3"]
+[ext_resource type="Texture2D" uid="uid://dbbay86ye6jj1" path="res://textures/rainbow_coin_animated_texture.tres" id="8_ib7db"]
 
 [node name="TitleScreen" type="MarginContainer"]
 custom_minimum_size = Vector2(10, 10)
@@ -55,6 +61,94 @@ alignment = 0
 
 [node name="Coin" parent="." instance=ExtResource("2_s4lrb")]
 position = Vector2(384, 72)
+
+[node name="CarouselContainer" type="Node2D" parent="." node_paths=PackedStringArray("position_offset_node")]
+position = Vector2(648, 324)
+scale = Vector2(2, 2)
+script = ExtResource("3_s4lrb")
+wraparound_radius = 20.0
+opacity_strength = 0.231
+scale_strength = 0.847
+scale_min = 0.73
+selected_index = 2
+follow_button_focus = true
+position_offset_node = NodePath("Control")
+metadata/_custom_type_script = "uid://dt0o3ggxr05r2"
+
+[node name="Control" type="Control" parent="CarouselContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -103.99998
+offset_right = -63.999977
+offset_bottom = 40.0
+
+[node name="GoldCoin" type="TextureRect" parent="CarouselContainer/Control"]
+modulate = Color(1, 1, 1, 0.538)
+z_index = -2
+texture_filter = 1
+layout_mode = 0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+scale = Vector2(0.73, 0.73)
+pivot_offset = Vector2(20, 20)
+mouse_filter = 2
+texture = ExtResource("4_cs5ya")
+
+[node name="SilverCoin" type="TextureRect" parent="CarouselContainer/Control"]
+modulate = Color(1, 1, 1, 0.769)
+z_index = -1
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.0
+offset_top = -20.0
+offset_right = 81.99993
+offset_bottom = 20.0
+scale = Vector2(0.73, 0.73)
+pivot_offset = Vector2(19.999966, 20)
+mouse_filter = 2
+texture = ExtResource("5_mykxm")
+
+[node name="CopperCoin" type="TextureRect" parent="CarouselContainer/Control"]
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 83.99993
+offset_top = -20.0
+offset_right = 124.00002
+offset_bottom = 20.0
+pivot_offset = Vector2(20.000046, 20)
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("6_tklts")
+
+[node name="BloodCoin" type="TextureRect" parent="CarouselContainer/Control"]
+modulate = Color(1, 1, 1, 0.769)
+z_index = -1
+texture_filter = 1
+layout_mode = 0
+offset_left = 126.00002
+offset_top = -20.0
+offset_right = 166.00015
+offset_bottom = 20.0
+scale = Vector2(0.73, 0.73)
+pivot_offset = Vector2(20.000065, 20)
+mouse_filter = 2
+texture = ExtResource("7_u26n3")
+
+[node name="RainbowCoin" type="TextureRect" parent="CarouselContainer/Control"]
+modulate = Color(1, 1, 1, 0.538)
+z_index = -2
+texture_filter = 1
+layout_mode = 0
+offset_left = 168.00015
+offset_top = -20.0
+offset_right = 208.00021
+offset_bottom = 20.0
+scale = Vector2(0.73, 0.73)
+pivot_offset = Vector2(20.00003, 20)
+mouse_filter = 2
+texture = ExtResource("8_ib7db")
 
 [connection signal="pressed" from="VBoxContainer/VBoxClickablesContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxClickablesContainer/Quit" to="." method="_on_quit_pressed"]

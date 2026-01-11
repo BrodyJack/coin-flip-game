@@ -1,0 +1,36 @@
+[gd_resource type="AnimatedTexture" load_steps=11 format=3 uid="uid://bg0n7xfhm5q27"]
+
+[ext_resource type="Texture2D" uid="uid://bmavqqn7ex86p" path="res://assets/copper_coin/copper_coin_animated1.png" id="1_og47m"]
+[ext_resource type="Texture2D" uid="uid://dbmj3dax6sxx3" path="res://assets/copper_coin/copper_coin_animated2.png" id="2_3krmc"]
+[ext_resource type="Texture2D" uid="uid://mk1a2hrcne1p" path="res://assets/copper_coin/copper_coin_animated3.png" id="3_srw01"]
+[ext_resource type="Texture2D" uid="uid://10t3fs73uad8" path="res://assets/copper_coin/copper_coin_animated4.png" id="4_emrhm"]
+[ext_resource type="Texture2D" uid="uid://ddyjgquq2x7d2" path="res://assets/copper_coin/copper_coin_animated5.png" id="5_6u5xa"]
+[ext_resource type="Texture2D" uid="uid://qfaoxrhd5pma" path="res://assets/copper_coin/copper_coin_animated6.png" id="6_14xis"]
+[ext_resource type="Texture2D" uid="uid://kp2tsq4fywkl" path="res://assets/copper_coin/copper_coin_animated7.png" id="7_i6pq3"]
+[ext_resource type="Texture2D" uid="uid://dnubd4hpfk3go" path="res://assets/copper_coin/copper_coin_animated8.png" id="8_y71m0"]
+[ext_resource type="Texture2D" uid="uid://bxtqqw7hnokd0" path="res://assets/copper_coin/copper_coin_animated9.png" id="9_6e6od"]
+[ext_resource type="Texture2D" uid="uid://btv73sr58qcb3" path="res://assets/copper_coin/copper_coin_animated10.png" id="10_td8iv"]
+
+[resource]
+frames = 10
+speed_scale = 0.8
+frame_0/texture = ExtResource("1_og47m")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_3krmc")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_srw01")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_emrhm")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_6u5xa")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("6_14xis")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("7_i6pq3")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("8_y71m0")
+frame_7/duration = 0.1
+frame_8/texture = ExtResource("9_6e6od")
+frame_8/duration = 0.1
+frame_9/texture = ExtResource("10_td8iv")
+frame_9/duration = 0.1

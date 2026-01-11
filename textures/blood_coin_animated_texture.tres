@@ -1,0 +1,36 @@
+[gd_resource type="AnimatedTexture" load_steps=11 format=3 uid="uid://me5h4a41msm4"]
+
+[ext_resource type="Texture2D" uid="uid://cqrct1a2ct5an" path="res://assets/blood_coin/blood_coin_animated1.png" id="1_2eb8i"]
+[ext_resource type="Texture2D" uid="uid://0eaudkw3gxdo" path="res://assets/blood_coin/blood_coin_animated2.png" id="2_3fo3e"]
+[ext_resource type="Texture2D" uid="uid://dxbcl7jrljcbp" path="res://assets/blood_coin/blood_coin_animated3.png" id="3_386kj"]
+[ext_resource type="Texture2D" uid="uid://bfrh670bi82qd" path="res://assets/blood_coin/blood_coin_animated4.png" id="4_0r2ni"]
+[ext_resource type="Texture2D" uid="uid://do7s37pki4xls" path="res://assets/blood_coin/blood_coin_animated5.png" id="5_wc6ie"]
+[ext_resource type="Texture2D" uid="uid://cd02mokepladx" path="res://assets/blood_coin/blood_coin_animated6.png" id="6_axh45"]
+[ext_resource type="Texture2D" uid="uid://vjqhqg5g0cov" path="res://assets/blood_coin/blood_coin_animated7.png" id="7_s8hfp"]
+[ext_resource type="Texture2D" uid="uid://dlpchn4uya363" path="res://assets/blood_coin/blood_coin_animated8.png" id="8_dsww5"]
+[ext_resource type="Texture2D" uid="uid://b8t4xscy0rbb0" path="res://assets/blood_coin/blood_coin_animated9.png" id="9_wq4pv"]
+[ext_resource type="Texture2D" uid="uid://0655rnu0ps6o" path="res://assets/blood_coin/blood_coin_animated10.png" id="10_pchx2"]
+
+[resource]
+frames = 10
+speed_scale = 0.8
+frame_0/texture = ExtResource("1_2eb8i")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_3fo3e")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_386kj")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_0r2ni")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_wc6ie")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("6_axh45")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("7_s8hfp")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("8_dsww5")
+frame_7/duration = 0.1
+frame_8/texture = ExtResource("9_wq4pv")
+frame_8/duration = 0.1
+frame_9/texture = ExtResource("10_pchx2")
+frame_9/duration = 0.1
